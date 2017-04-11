@@ -9,31 +9,36 @@ var request = require("request");
 
 var fs = require("fs");
 
-// var returnArtist = function(artist){
-// 	return artist.name;
-// };
+var returnArtist = function(artist){
+	return artist.name;
+};
 
-// var returnSpotify = function(songName){
-// 	if(songName === undefined) {
-// 		songName = "Friday";
-// 	}
+var returnSpotify = function(songName){
+	if(songName === undefined) {
+		songName = "Friday";
+	}
 
-// 	spotify.search({
-// 		type: "track",
-// 		query: songName
-// 	}, function(err, data){
-// 	if (err){
-// 		console.log("Error:" + err);
-// 		return;
-// 	}
+	spotify.search({
+		type: "track",
+		query: songName
+	}, function(err, data){
+	if (err){
+		console.log("Error:" + err);
+		return;
+	}
 
-// 	var tracks = data.tracks.items;
+	var tracks = data.tracks.items;
 
-// 	for(var = 0; i < tracks.length; i++) {
-// 		console.log("artist(s): " + tracks[i].artist.map(returnArtist));
-// 		console.log("song")
-// 	} 
-// }
+	for(var i = 0; i < tracks.length; i++) {
+		console.log(i);
+		console.log("artist(s): " + tracks[i].artist.map(returnArtist));
+		console.log("song name: " + songs[i].name);
+		console.log("preview song: " + songs[i].preview_url);
+		console.log("album: " + songs[i].album.name);
+		console.log("--------------");
+	} 
+});
+};
 
 
 var getMyTweets = function() {
@@ -77,6 +82,9 @@ var pick = function(caseData, functionData) {
 	switch (caseData){
 		case "my-tweets":
 		getMyTweets();
+		break;
+		case "spotify-this-song":
+		returnSpotify(functionData);
 		break;
 	}
 };
